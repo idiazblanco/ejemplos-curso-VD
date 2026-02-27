@@ -47,7 +47,7 @@ Para reproducir los ejemplos localmente, descarga los siguientes archivos en la 
 
 ## ▶️ Instrucciones para reproducir los ejemplos
 
-Para ejecutar los scripts del repositorio en tu ordenador, sigue estos pasos:
+Este proyecto utiliza **`uv`**, un gestor moderno de entornos y dependencias para Python que garantiza reproducibilidad mediante los archivos `pyproject.toml` y `uv.lock`.
 
 ### 1️⃣ Clonar el repositorio
 
@@ -56,42 +56,23 @@ git clone <URL-del-repositorio>
 cd ejemplos-curso-VD
 ```
 
----
-
-### 2️⃣ Crear un entorno virtual
-
-Este proyecto requiere Python 3.14 o superior (según `pyproject.toml`).
+### 2️⃣ Instalar dependencias y crear el entorno
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate   # macOS / Linux
-# .venv\Scripts\activate    # Windows
-```
-
----
-
-### 3️⃣ Instalar dependencias
-
-#### Opción recomendada (reproducible con uv)
-
-Si tienes `uv` instalado:
-
-```bash
-# Instalar uv (solo la primera vez)
-pip install uv
-
-# Crear entorno y sincronizar dependencias
+pip install uv   # solo si no lo tienes instalado
 uv sync
 ```
 
-Esto creará automáticamente el entorno virtual y instalará exactamente las versiones definidas en `pyproject.toml` y fijadas en `uv.lock`, garantizando reproducibilidad.
+El comando `uv sync`:
 
----
+- Crea automáticamente el entorno virtual `.venv`
+- Instala las versiones exactas de las librerías
+- Garantiza que todos trabajen con el mismo entorno
 
-### 4️⃣ Ejecutar un ejemplo
+### 3️⃣ Ejecutar un ejemplo
 
 ```bash
-python demo1a_lineplot.py
+uv run python demo1a_lineplot.py
 ```
 
 Cada script genera un archivo `.html` que se abrirá en tu navegador.
