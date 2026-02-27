@@ -72,12 +72,6 @@ source .venv/bin/activate   # macOS / Linux
 
 ### 3️⃣ Instalar dependencias
 
-#### Opción rápida (manual)
-
-```bash
-pip install bokeh ipython matplotlib pandas requests scikit-learn tables
-```
-
 #### Opción recomendada (reproducible con uv)
 
 Si tienes `uv` instalado:
