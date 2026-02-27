@@ -124,7 +124,7 @@ p.tools.append(hover)
 
 slider = Slider(start=0, end=1, value=0.7, step=.01, title='lambda',width=500)
 
-callback_slider=CustomJS(args=dict(source=source, E=Encodings),
+callback_slider=CustomJS(args=dict(source=source, E=[E.tolist() for E in Encodings]),
                     code="""
                     var L = cb_obj.value                    
                     var x1 = E[0][0]

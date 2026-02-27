@@ -12,8 +12,8 @@ import numpy as np
 from bokeh.plotting import figure, output_file
 
 from bokeh.io import show, curdoc
-from bokeh.models import Div, ColumnDataSource, Slider, CustomJS, Circle, LinearColorMapper
-from bokeh.layouts import layout, widgetbox
+from bokeh.models import Div, ColumnDataSource, Slider, CustomJS, LinearColorMapper
+from bokeh.layouts import layout
 
 
 
@@ -80,20 +80,16 @@ source.data['tam'] = df['ay@25Hz']*200
 # FIGURA
 # creamos la figura
 f1 = figure(width=600,height=150,tools="crosshair,box_select,xpan,reset,xwheel_zoom",title='ax@25Hz')
-p1 = f1.circle(x='t', y='ax@25Hz', source=source)
-p1.selection_glyph = Circle(fill_alpha=1, fill_color="firebrick", line_color=None)
+p1 = f1.scatter(x='t', y='ax@25Hz', source=source, marker="circle", size=6, selection_color="firebrick", nonselection_alpha=0.2)
 
 f2 = figure(width=600,height=150,tools="crosshair,box_select,xpan,reset,xwheel_zoom",title='ay@25Hz',x_range = f1.x_range)
-p2 = f2.circle(x='t', y='ay@25Hz', source=source)
-p2.selection_glyph = Circle(fill_alpha=1, fill_color="firebrick", line_color=None)
+p2 = f2.scatter(x='t', y='ay@25Hz', source=source, marker="circle", size=6, selection_color="firebrick", nonselection_alpha=0.2)
 
 f3 = figure(width=600,height=150,tools="crosshair,box_select,xpan,reset,xwheel_zoom",title='ay@100Hz',x_range = f1.x_range)
-p3 = f3.circle(x='t', y='ay@100Hz', source=source)
-p3.selection_glyph = Circle(fill_alpha=1, fill_color="firebrick", line_color=None)
+p3 = f3.scatter(x='t', y='ay@100Hz', source=source, marker="circle", size=6, selection_color="firebrick", nonselection_alpha=0.2)
 
 f4 = figure(width=600,height=150,tools="crosshair,box_select,xpan,reset,xwheel_zoom",title='iR@50Hz',x_range = f1.x_range)
-p4 = f4.circle(x='t', y='ir@50Hz', source=source)
-p4.selection_glyph = Circle(fill_alpha=1, fill_color="firebrick", line_color=None)
+p4 = f4.scatter(x='t', y='ir@50Hz', source=source, marker="circle", size=6, selection_color="firebrick", nonselection_alpha=0.2)
 
 
 
@@ -108,8 +104,7 @@ color_map = LinearColorMapper(palette=paleta,
                   low = min(df['ay@100Hz']),
                   high= max(df['ay@100Hz']))
 f5 = figure(width=600,height=600,tools="crosshair,box_select,lasso_select,pan,reset,wheel_zoom",match_aspect=True,title='Mapa de estados del motor (t-SNE)')
-p5 = f5.circle(x='pr_x', y='pr_y', source=source,size='tam',color={'field': 'ay@100Hz', 'transform': color_map})
-p5.selection_glyph = Circle(fill_alpha=1, fill_color="firebrick", line_color=None)
+p5 = f5.scatter(x='pr_x', y='pr_y', source=source, marker="circle", size='tam', color={'field': 'ay@100Hz', 'transform': color_map}, selection_color="firebrick", nonselection_alpha=0.2)
 
 # añadir colorbar a la figura
 from bokeh.models import ColorBar

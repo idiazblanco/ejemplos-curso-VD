@@ -32,9 +32,14 @@ color_map = CategoricalColorMapper(factors=df['especie'].unique(),
 # crear figura y plot
 # en el campo color se usa color_map para mapear "categoría --> color" en cada muestra
 p = figure()
-p.scatter(x='Largo de sépalo', y='Largo de pétalo',
-          color={'field': 'especie', 'transform': color_map},
-          legend_group='especie', source=source, radius=0.02)
+p.circle(
+    x='Largo de sépalo',
+    y='Largo de pétalo',
+    color={'field': 'especie', 'transform': color_map},
+    legend_group='especie',
+    source=source,
+    radius=0.02
+)
 
 # tooltips
 hover = HoverTool()
